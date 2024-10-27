@@ -1,0 +1,157 @@
+@font-face {
+  font-family: "IBMPlexSansKR-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "IBMPlexSansKR-Regular", sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+input {
+  width: 250px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background: transparent;
+}
+
+input,
+button {
+  color: #808080;
+  font-size: 15px;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  padding: 20px 0 20px 20px;
+  color: #fff;
+  background-color: #000;
+}
+
+.logo {
+  font-size: 28px;
+}
+
+.post-wrapper {
+  margin-bottom: 30px;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 20px 0 20px 20px;
+  border-bottom: 1px solid #808080;
+}
+
+.post-title {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.post-date {
+  margin-right: 15px;
+}
+
+.post-like {
+  margin-right: 15px;
+}
+
+.post-manage-wrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.post-manage {
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  margin-bottom: 20px;
+}
+
+.input-title {
+  margin-right: 10px;
+}
+
+.content-wrapper {
+  padding: 40px 0 40px 20px;
+  color: #000;
+  background-color: #ccc;
+}
+
+.content-title {
+  margin-bottom: 15px;
+  font-size: 19px;
+}
+
+.content-date {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  padding: 20px 0 20px 20px;
+  color: #fff;
+  background-color: #000;
+}
+
+.project-name {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.project-desc {
+  font-size: 13px;
+}
+
+.white-button {
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.black-button {
+  padding: 3px 5px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: #000;
+  cursor: pointer;
+}
