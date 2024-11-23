@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs, { ManipulateType } from "dayjs";
-import { calculateTimeParts, debouncePress, stateChanged } from "./module";
+import { calculateTimeParts, debounce, stateChanged, throttle } from "./module";
 import { PromiseCreator, UseRequestReturnType } from "./type";
 
 export function useDebounced(
@@ -75,19 +75,16 @@ export function useTimeout(callback: () => void, delay: number) {
   }, [delay]);
 }
 
-export function useThrottle(callback: () => void, time: number) {
-  const isWaiting = React.useRef<boolean>(false);
-  const callbackRef = React.useRef<() => void>();
-  React.useEffect(() => {
-    callbackRef.current = callback;
-  }, [callback]);
-  return () => {
-    if (!isWaiting.current && callbackRef.current) {
-      isWaiting.current = true;
-      callbackRef.current();
-      setTimeout(() => (isWaiting.current = false), time);
-    }
-  };
+export function useThrottle<T extends (...args: any[]) => any>(
+  callback: T,
+  wait: number
+) {
+  // debounce된 함수를 저장할 ref
+  const throttledCallback = React.useRef(throttle(callback, wait));
+  // debouncedCallback의 current를 반환 (메모이제이션)
+  return React.useCallback(throttledCallback.current, [
+    throttledCallback.current,
+  ]);
 }
 
 export function useModal(
@@ -170,12 +167,12 @@ export function useRequest<T, K extends any[]>(
  * @param wait 지연 시간 (밀리초)
  * @returns debounce된 함수
  */
-export function useDebouncePress<T extends (...args: any[]) => any>(
+export function useDebounce<T extends (...args: any[]) => any>(
   callback: T,
   wait: number
 ) {
   // debounce된 함수를 저장할 ref
-  const debouncedCallback = React.useRef(debouncePress(callback, wait));
+  const debouncedCallback = React.useRef(debounce(callback, wait));
   // debouncedCallback의 current를 반환 (메모이제이션)
   return React.useCallback(debouncedCallback.current, [
     debouncedCallback.current,

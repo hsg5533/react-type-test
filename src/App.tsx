@@ -3,10 +3,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko"; // 한국어 가져오기
 import "./App.css";
-import TimeComponent from "./component/TimeComponent";
-import ParentComponent from "./component/ParentComponent";
+
 import {
-  useDebouncePress,
+  useDebounce,
   useDebounced,
   useDelay,
   useInterval,
@@ -19,6 +18,7 @@ import LeftArrow from "./component/LeftArrow";
 import RightArrow from "./component/RightArrow";
 import ArchiveContainer from "./component/ArchiveContainer";
 import SignUpForm from "./component/SignUpForm";
+import MouseTracker from "./component/MouseTracker";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -79,7 +79,7 @@ export default function App() {
     requestSomething();
   }, 500);
 
-  const debounceHandler = useDebouncePress(() => {
+  const debounceHandler = useDebounce(() => {
     console.log("debounce test");
   }, 500);
 
@@ -210,10 +210,7 @@ export default function App() {
         >
           -1
         </button>
-        <TimeComponent props={date} />
-        <ParentComponent />
       </main>
-
       <button
         onClick={() => {
           console.log("버튼 클릭됨");
@@ -234,6 +231,7 @@ export default function App() {
       <RightArrow />
       <SignUpForm />
       <ArchiveContainer />
+      <MouseTracker />
       <footer>
         <h1 className="project-name">Simple React Blog</h1>
         <span className="project-desc">

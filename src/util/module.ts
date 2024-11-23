@@ -92,7 +92,7 @@ export async function request(
  * const debouncedFunction = debounce(() => console.log("실행"), 300);
  * debouncedFunction();
  */
-export function debouncePress<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number = 250
 ) {
@@ -226,4 +226,34 @@ export function stateChanged<T extends { [key: string]: any }>(
     }
   });
   return changes;
+}
+
+export function throttle<T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number
+) {
+  let last = 0;
+  let result: ReturnType<T>;
+  let timer: NodeJS.Timeout | undefined;
+  return (...args: Parameters<T>): ReturnType<T> | undefined => {
+    const now = Date.now();
+    const remaining = delay - (now - last);
+    if (remaining <= 0) {
+      last = now;
+      result = fn(...args);
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = undefined;
+      return result;
+    }
+    if (!timer) {
+      timer = setTimeout(() => {
+        last = Date.now();
+        result = fn(...args);
+        timer = undefined;
+        return result;
+      }, remaining);
+    }
+  };
 }
