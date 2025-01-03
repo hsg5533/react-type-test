@@ -3,11 +3,7 @@ import dayjs, { ManipulateType } from "dayjs";
 import { calculateTimeParts, debounce, stateChanged, throttle } from "./module";
 import { PromiseCreator, UseRequestReturnType } from "./type";
 
-export function useDebounced(
-  callback: () => void,
-  delay: number,
-  deps: number
-) {
+export function useDebounced(callback: () => void, delay: number, deps: any) {
   const savedCallback = React.useRef<() => void>();
   React.useEffect(() => {
     savedCallback.current = callback;
